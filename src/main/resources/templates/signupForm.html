@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> 회원 등록 </title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        function signup() {
+            const signupForm = document.getElementById('signupForm');
+
+            const memberInfoRequest = {
+                memberName: signupForm.memberName.value,
+                memberEmail: signupForm.memberEmail.value,
+                joinDate: signupForm.joinDate.value,
+            };
+
+            fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(memberInfoRequest)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/members";
+                        return;
+                    }
+                    return response.json().then(err => {
+                        throw err;
+                    });
+
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert(error.message);
+                });
+        }
+    </script>
+</head>
+<body>
+
+<h1>회원 등록 :</h1>
+<form id="signupForm" onsubmit="event.preventDefault(); signup();">
+    <label>Name:</label>
+    <label for="memberName"></label><input type="text" id="memberName" name="memberName">
+    <label>Email:</label>
+    <label for="memberEmail"></label><input type="email" id="memberEmail" name="memberEmail">
+    <label>Join Date:</label>
+    <label for="joinDate"></label><input type="date" id="joinDate" name="joinDate">
+    <input type="submit" value="회원 등록">
+</form>
+</body>
+</html>

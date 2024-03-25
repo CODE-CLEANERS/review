@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>회원 상세 정보</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div style="align-content: center">
+    <a href="/members"> 돌아가기 </a>
+    <a th:href="@{/members/{id}/edit(id=${member.memberId})}">회원 정보 수정</a>
+    <a href="#" th:data-memberId="${member.memberId}" class="deleteMemberButton">회원 삭제</a>
+</div>
+
+<h1>회원 상세 정보 :</h1>
+<p th:text="'ID: ' + ${member.memberId}"></p>
+<p th:text="'이름: ' + ${member.memberName}"></p>
+<p th:text="'이메일: ' + ${member.memberEmail}"></p>
+<p th:text="'가입일: ' + ${member.joinDate}"></p>
+<p th:text="'회원 레벨: ' + ${member.memberLevel}"></p>
+<p th:text="'보유 카드 수: ' + ${member.cardCount}"></p>
+
+<h2> 보유한 카드들 : </h2>
+
+<div>
+    <a th:href="@{{id}/game-card(id=${member.memberId})}">카드 등록</a>
+</div>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>게임 종류</th>
+        <th>타이틀</th>
+        <th>일련번호</th>
+        <th>가격</th>
+        <th></th>
+    </tr>
+    <tr th:each="card : ${memberCards}">
+        <td th:text="${card.id()}"></td>
+        <td th:text="${card.game()}"></td>
+        <td th:text="${card.title()}"></td>
+        <td th:text="${card.serialNumber()}"></td>
+        <td th:text="${card.price()}"></td>
+        <td>
+            <button th:data-memberId="${member.memberId}" th:data-cardId="${card.id()}" class="deleteCardButton">[삭제]</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        let deleteMemberButtons = document.querySelectorAll('.deleteMemberButton');
+        let deleteCardButtons = document.querySelectorAll('.deleteCardButton');
+
+        deleteMemberButtons.forEach(function(button){
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                let memberId = button.getAttribute('data-memberId');
+                if (confirm('정말로 삭제할까요?')) {
+                    fetch(`/members/${memberId}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if(response.ok){
+                                window.location.href = '/members';
+                                return;
+                            }
+                            return response.json().then(err => {
+                                throw err;
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert(error.message);
+                        });
+                }
+            });
+        });
+
+        deleteCardButtons.forEach(function(button){
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                let memberId = button.getAttribute('data-memberId');
+                let cardId = button.getAttribute('data-cardId');
+
+                if (confirm('정말로 삭제할까요?')) {
+                    fetch(`/api/game-cards`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            memberId: memberId,
+                            gameCardId: cardId
+                        })
+                    })
+                        .then(response => {
+                            if(response.ok){
+                                alert('삭제에 성공했습니다.');
+                                location.reload();
+                                return;
+                            }
+                            return response.json().then(err => {
+                                throw err;
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert(error.message);
+                        });
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>

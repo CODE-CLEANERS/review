@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>회원 수정</title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        function updateMember() {
+            const updateForm = document.getElementById('updateForm');
+            const memberId = document.getElementById('memberId').value;
+
+            const memberInfoRequest = {
+                memberName: updateForm.memberName.value,
+                memberEmail: updateForm.memberEmail.value,
+                joinDate: updateForm.joinDate.value,
+            };
+
+            fetch('/api/members/' + memberId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(memberInfoRequest)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/members";
+                        return;
+                    }
+                    return response.json().then(err => {
+                        throw err;
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert(error.message);
+                });
+        }
+
+        function cancelUpdate() {
+            window.location.href = "/members";
+        }
+    </script>
+</head>
+<body>
+
+<h1 id="formHead" th:text="'회원 수정 - memberId : '+${prevMemberInfo.memberId}">회원 수정 : ID</h1>
+<form id="updateForm" onsubmit="event.preventDefault(); updateMember();">
+    <input type="hidden" id="memberId" name="memberId" th:value="${prevMemberInfo.memberId}">
+    <label>Name:</label>
+    <label for="memberName"></label><input type="text" id="memberName" name="memberName" th:value="${prevMemberInfo.memberName}">
+    <label>Email:</label>
+    <label for="memberEmail"></label><input type="email" id="memberEmail" name="memberEmail" th:value="${prevMemberInfo.memberEmail}">
+    <label>Join Date:</label>
+    <label for="joinDate"></label><input type="date" id="joinDate" name="joinDate" th:value="${prevMemberInfo.joinDate()}">
+    <input type="button" onclick="cancelUpdate();" value="취소">
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>
