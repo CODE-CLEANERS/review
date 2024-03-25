@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>회원 목록</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<h1>
+    회원 목록
+</h1>
+
+<form id="searchForm" action="#" th:action="@{/members}" th:object="${memberSearchRequest}" method="get">
+    <div>
+        <label>
+            <input type="text" th:field="*{memberName}" placeholder="Name"/>
+        </label>
+        <label>
+            <select th:field="*{memberLevel}">
+                <option value="">전체</option>
+                <option th:each="level : ${memberLevels}"
+                        th:value="${level}" th:text="${level}"></option>
+            </select>
+        </label>
+        <button type="submit">검색</button>
+    </div>
+
+    <span>
+        <a href="/members/signup">회원 등록</a>
+    </span>
+</form>
+
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Join Date</th>
+        <th scope="col">Level</th>
+        <th scope="col">Card Count</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="member : ${members}">
+        <th scope="row" th:text="${member.memberId()}"></th>
+        <td>
+            <a th:href="@{'/members/' + ${member.memberId()}}" th:text="${member.memberName()}">Name</a>
+        </td>
+        <td th:text="${member.memberEmail()}"></td>
+        <td th:text="${member.joinDate()}"></td>
+        <td th:text="${member.memberLevel()}"></td>
+        <td th:text="${member.cardCount}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

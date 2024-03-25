@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+input[type="submit"] {
+    margin-top: 30px;
+}
+
+ .table {
+     margin-left: auto;
+     margin-right: auto;
+     border-collapse: collapse;
+     width: 90%;
+ }
+
+.table td, .table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+form#searchForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form#searchForm > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form#searchForm span {
+    margin-left: auto;
+}
+
+form#searchForm button, form#searchForm a {
+    white-space: nowrap;
+}
