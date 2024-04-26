@@ -19,7 +19,7 @@ public class GameCardRestController {
 
     @PostMapping("/game-cards")
     public void enrollGameCard(@Valid @RequestBody GameCardRequest gameCardRequest){
-        gameCardService.enrollGameCard(gameCardRequest);
+        gameCardService.save(gameCardRequest);
     }
 
     @DeleteMapping("/game-cards")

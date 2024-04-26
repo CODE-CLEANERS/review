@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(GameCardRestController.class)
@@ -37,7 +38,7 @@ class GameCardRestControllerTest {
                 1L
         );
 
-        doNothing().when(gameCardService).enrollGameCard(gameCardRequest);
+        when(gameCardService.save(gameCardRequest)).thenReturn(null);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/game-cards")
                         .content(OBJECT_MAPPER.writeValueAsString(gameCardRequest))

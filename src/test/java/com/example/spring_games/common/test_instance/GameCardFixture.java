@@ -16,8 +16,7 @@ public class GameCardFixture {
                 new Title("TEST"),
                 price,
                 serialNumber,
-                gameFixture,
-                MemberFixture.TEST
+                gameFixture
         );
     }
 
@@ -26,8 +25,7 @@ public class GameCardFixture {
                 new Title("TEST"),
                 new Price(100),
                 serialNumber,
-                game,
-                member
+                game
         );
     }
 
@@ -35,96 +33,84 @@ public class GameCardFixture {
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             1125126126L,
-            GameFixture.MAGIC_THE_GATHERING,
-            MemberFixture.MEMBER_DK
+            GameFixture.MAGIC_THE_GATHERING
     );
 
     public static final GameCard YU_GI_OH_DK = new GameCard(
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             125125L,
-            GameFixture.YU_GI_OH,
-            MemberFixture.MEMBER_DK
+            GameFixture.YU_GI_OH
     );
 
     public static final GameCard MAGIC_THE_GATHERING_NO_1 = new GameCard(
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             1L,
-            GameFixture.MAGIC_THE_GATHERING,
-            MemberFixture.MEMBER_DK
+            GameFixture.MAGIC_THE_GATHERING
             );
 
     public static final GameCard MAGIC_THE_GATHERING_NO_2_PRICE_100 = new GameCard(
             new Title("TEST"),
             new Price(GOLD_LEVEL_STANDARD_PRICE),
             2L,
-            GameFixture.MAGIC_THE_GATHERING,
-            MemberFixture.TEST
+            GameFixture.MAGIC_THE_GATHERING
     );
 
     public static final GameCard MAGIC_THE_GATHERING_NO_3 = new GameCard(
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             3L,
-            GameFixture.MAGIC_THE_GATHERING,
-            MemberFixture.TEST
+            GameFixture.MAGIC_THE_GATHERING
     );
 
     public static final GameCard MAGIC_THE_GATHERING_NO_4_FREE = new GameCard(
             new Title("TEST"),
             new Price(FREE),
             3L,
-            GameFixture.MAGIC_THE_GATHERING,
-            MemberFixture.TEST
+            GameFixture.MAGIC_THE_GATHERING
     );
 
     public static final GameCard YU_GI_OH_NO_1 = new GameCard(
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             1L,
-            GameFixture.YU_GI_OH,
-            MemberFixture.TEST
+            GameFixture.YU_GI_OH
     );
 
     public static final GameCard YU_GI_OH_NO_2_PRICE_100 = new GameCard(
             new Title("TEST"),
             new Price(GOLD_LEVEL_STANDARD_PRICE),
             2L,
-            GameFixture.YU_GI_OH,
-            MemberFixture.TEST
+            GameFixture.YU_GI_OH
     );
 
     public static final GameCard YU_GI_OH_NO_3_FREE = new GameCard(
             new Title("TEST"),
             new Price(FREE),
             3L,
-            GameFixture.YU_GI_OH,
-            MemberFixture.TEST
+            GameFixture.YU_GI_OH
     );
 
     public static final GameCard POKEMON_NO_1 = new GameCard(
             new Title("TEST"),
             new Price(NOT_GOLD_LEVEL_PRICE),
             1L,
-            GameFixture.POKEMON,
-            MemberFixture.TEST
+            GameFixture.POKEMON
     );
 
     public static final GameCard POKEMON_NO_2_PRICE_100 = new GameCard(
             new Title("TEST"),
             new Price(GOLD_LEVEL_STANDARD_PRICE),
             2L,
-            GameFixture.POKEMON,
-            MemberFixture.TEST
+            GameFixture.POKEMON
     );
 
     public static final GameCard POKEMON_NO_3_FREE = new GameCard(
             new Title("TEST"),
             new Price(FREE),
             1L,
-            GameFixture.POKEMON,
-            MemberFixture.TEST
+            GameFixture.POKEMON
     );
 
     public static final GameCard MAGIC_THE_GATHERING_LOW_PRICE = getCustomInstance(

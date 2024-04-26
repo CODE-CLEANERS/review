@@ -14,7 +14,7 @@ public record GameCardRequest(
         @DecimalMax(value = "100000.0", message = "가격은 100000.0원을 넘을 수 없습니다.") double price,
         @NotNull(message = "회원 ID를 입력해주세요.") Long memberId,
         @NotNull(message = "게임 ID를 입력해주세요.") Long gameId)  {
-    public GameCard toEntity(Game game, Long serialNumber, Member member) {
-        return new GameCard(new Title(title), new Price(price), serialNumber, game, member);
+    public GameCard toEntity(Game game, Long serialNumber) {
+        return new GameCard(new Title(title), new Price(price), serialNumber, game);
     }
 }

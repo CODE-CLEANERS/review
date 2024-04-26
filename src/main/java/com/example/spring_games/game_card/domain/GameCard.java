@@ -4,21 +4,13 @@ import com.example.spring_games.game.domain.Game;
 import com.example.spring_games.game_card.domain.vo.Price;
 import com.example.spring_games.game_card.domain.vo.Title;
 import com.example.spring_games.member.domain.Member;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -29,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @EqualsAndHashCode
 public class GameCard {
+
     private static final double FREE_CARD_VALUE = 0;
 
     // 고유한 아이디로 구분되고 ...
@@ -55,15 +48,19 @@ public class GameCard {
     @JoinColumn(name = "member_id")
     private Member member;
 
+
     public boolean isValid(){
         return this.price.getValue() > FREE_CARD_VALUE;
     }
 
-    public GameCard(Title title, Price price, Long serialNumber, Game game, Member member) {
+    public GameCard(Title title, Price price, Long serialNumber, Game game) {
         this.title = title;
         this.price = price;
         this.serialNumber = serialNumber;
         this.game = game;
+    }
+
+    public void setOwner(Member member) {
         this.member = member;
     }
 }

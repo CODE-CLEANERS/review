@@ -15,7 +15,7 @@ public class EntityProvider {
     private Repositories repositories;
 
     public Game saveGame(Game game){
-        return repositories.getGameRepository().save(game);
+        return repositories.getGameRepository().saveAndFlush(game);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

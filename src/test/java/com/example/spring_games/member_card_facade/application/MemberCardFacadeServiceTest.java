@@ -86,6 +86,7 @@ class MemberCardFacadeServiceTest extends ServiceTest {
         GameCard gameCard3 = entityProvider.saveGameCard(GameCardFixture.getCustomInstance(game, member, 3L));
 
         //when
+        member.addCard(List.of(gameCard1, gameCard2, gameCard3));
         List<CardDetailResponse> gameCardsOfMember = memberCardFacadeService.getGameCardsOfMember(member.getId());
 
         // then

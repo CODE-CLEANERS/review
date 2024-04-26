@@ -1,5 +1,8 @@
 package com.example.spring_games.member.application;
 
+import com.example.spring_games.game_card.application.GameCardService;
+import com.example.spring_games.game_card.domain.GameCard;
+import com.example.spring_games.member.application.dto.GameCardRequest;
 import com.example.spring_games.member.application.dto.MemberInfoRequest;
 import com.example.spring_games.member.domain.Member;
 import com.example.spring_games.member.domain.vo.MemberEmail;
@@ -22,6 +25,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final MemberLevelNotificationService memberLevelNotificationService;
+    private final GameCardService gameCardService;
 
     @Transactional
     public Long signup(MemberInfoRequest memberInfoRequest){
@@ -35,6 +39,7 @@ public class MemberService {
 
         return savedMember.getId();
     }
+
 
     @Transactional
     public Long updateMemberInfo(Long memberId, MemberInfoRequest updateRequest){
@@ -64,5 +69,19 @@ public class MemberService {
     @Transactional
     public void deleteMember(Long memberId){
         memberRepository.deleteById(memberId);
+    }
+
+    public void enrollGameCard(GameCardRequest gameCardRequest){
+        GameCard gameCard = gameCardService.save(gameCardRequest);
+        Member member = this.findById(gameCardRequest.memberId());
+        member.addCard(gameCard);
+
+        MemberLevel prevLevel = member.getMemberLevel();
+        MemberLevel updatedLevel = MemberLevel.calculateNewLevel(member);
+
+        if (prevLevel != updatedLevel){
+            member.updateMemberLevel(updatedLevel);
+            memberLevelNotificationService.notifyMemberLevelChanged(member.getId(), member.getMemberName(), updatedLevel);
+        }
     }
 }
