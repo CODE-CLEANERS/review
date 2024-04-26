@@ -23,4 +23,10 @@ public class MemberFixture {
             new MemberEmail("TESTTT@email.com"),
             new MemberJoinDate("2024-03-11")
     );
+
+    public static final Member MEMBER_DK_2 = new Member(
+            new MemberName("김동균"),
+            new MemberEmail("laancer4@gmail.com"),
+            new MemberJoinDate("2024-03-19")
+    );
 }
