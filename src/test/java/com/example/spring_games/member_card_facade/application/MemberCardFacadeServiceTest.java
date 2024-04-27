@@ -15,7 +15,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
@@ -51,10 +53,11 @@ class MemberCardFacadeServiceTest extends ServiceTest {
     void getMultipleMembersWithCardCounts() {
         // given
         Member member1 = entityProvider.saveMember(MemberFixture.MEMBER_DK);
-        Member member2 = entityProvider.saveMember(MemberFixture.TEST);
+        Member member2 = entityProvider.saveMember(MemberFixture.MEMBER_DK_2);
         MemberSearchRequest searchRequest = new MemberSearchRequest();
 
-        List<Member> members = Arrays.asList(member1, member2);
+        List<Member> members = Stream.of(member1, member2)
+                .sorted(Comparator.comparing(Member::getId).reversed()).toList();
 
         // when
         List<MemberCardResponse> responses = memberCardFacadeService.getMultipleMembersWithCardCounts(searchRequest);
