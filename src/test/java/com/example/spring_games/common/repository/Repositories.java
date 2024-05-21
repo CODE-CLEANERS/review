@@ -2,7 +2,7 @@ package com.example.spring_games.common.repository;
 
 import com.example.spring_games.game.domain.GameRepository;
 import com.example.spring_games.game_card.domain.GameCardRepository;
-import com.example.spring_games.member.repository.MemberRepository;
+import com.example.spring_games.member.repository.DefaultMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ public class Repositories {
     private GameRepository gameRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    private DefaultMemberRepository memberRepository;
 
     @Autowired
     private GameCardRepository gameCardRepository;
@@ -21,7 +21,7 @@ public class Repositories {
         return gameRepository;
     }
 
-    public MemberRepository getMemberRepository() {
+    public DefaultMemberRepository getMemberRepository() {
         return memberRepository;
     }
 

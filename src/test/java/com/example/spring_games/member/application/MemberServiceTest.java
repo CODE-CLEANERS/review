@@ -11,7 +11,7 @@ import com.example.spring_games.member.application.dto.GameCardRequest;
 import com.example.spring_games.member.application.dto.MemberInfoRequest;
 import com.example.spring_games.member.domain.Member;
 import com.example.spring_games.member.domain.vo.MemberLevel;
-import com.example.spring_games.member.repository.MemberRepository;
+import com.example.spring_games.member.repository.DefaultMemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberServiceTest extends ServiceTest {
 
     @Autowired
-    private MemberService memberService;
+    private MemberManagementService memberService;
 
     @Autowired
     private GameCardService gameCardService;
 
     @Autowired
-    private MemberRepository memberRepository;
+    private DefaultMemberRepository memberRepository;
 
     @Test
     @DisplayName("회원 가입에 성공한다.")

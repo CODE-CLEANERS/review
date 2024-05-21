@@ -2,7 +2,7 @@ package com.example.spring_games.member_card_facade.application;
 
 import com.example.spring_games.game_card.application.GameCardService;
 import com.example.spring_games.game_card.domain.GameCard;
-import com.example.spring_games.member.application.MemberService;
+import com.example.spring_games.member.application.MemberManagementService;
 import com.example.spring_games.member.application.dto.MemberSearchRequest;
 import com.example.spring_games.member.domain.Member;
 import com.example.spring_games.member_card_facade.application.dto.CardDetailResponse;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MemberCardFacadeService {
-    private final MemberService memberService;
+    private final MemberManagementService memberService;
     private final GameCardService gameCardService;
 
     public MemberCardResponse getSingleMemberWithCardCount(Long memberId){

@@ -4,8 +4,6 @@ import com.example.spring_games.game.application.GameService;
 import com.example.spring_games.game.domain.Game;
 import com.example.spring_games.game_card.domain.GameCard;
 import com.example.spring_games.game_card.domain.GameCardRepository;
-import com.example.spring_games.member.application.MemberLevelNotificationService;
-import com.example.spring_games.member.application.MemberService;
 import com.example.spring_games.member.application.dto.GameCardRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

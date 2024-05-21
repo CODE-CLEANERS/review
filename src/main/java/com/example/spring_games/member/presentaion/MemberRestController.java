@@ -1,6 +1,6 @@
 package com.example.spring_games.member.presentaion;
 
-import com.example.spring_games.member.application.MemberService;
+import com.example.spring_games.member.application.MemberManagementService;
 import com.example.spring_games.member.application.dto.MemberInfoRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class MemberRestController {
-    private final MemberService memberService;
+    private final MemberManagementService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@Valid @RequestBody MemberInfoRequest memberInfoRequest){

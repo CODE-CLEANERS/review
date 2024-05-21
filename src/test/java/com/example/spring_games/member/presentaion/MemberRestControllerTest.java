@@ -1,6 +1,6 @@
 package com.example.spring_games.member.presentaion;
 
-import com.example.spring_games.member.application.MemberService;
+import com.example.spring_games.member.application.MemberManagementService;
 import com.example.spring_games.member.application.dto.MemberInfoRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +29,7 @@ class MemberRestControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private MemberService memberService;
+    private MemberManagementService memberService;
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
